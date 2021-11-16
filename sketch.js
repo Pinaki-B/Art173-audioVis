@@ -16,12 +16,13 @@ function setup() {
   // Create an Audio input
   input = new p5.AudioIn();
   input.start();
+  getAudioContext().resume();
   fft = new p5.FFT(.8, VIZ_LENGTH)
   fft.setInput(input)
 
   for (let i = 0; i < VIZ_LENGTH; i++) {
     STATIC_TEST[i] = random(80) + 20;
-    console.log("This is working")
+    // console.log("This is working")
   }
 
   for (let i = 0; i < grid.length; i++) {
@@ -31,6 +32,10 @@ function setup() {
     }
   }
   noStroke()
+}
+
+function touchStarted() {
+  getAudioContext().resume();
 }
 
 function draw() {
